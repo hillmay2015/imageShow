@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传</title>
+    <link rel="stylesheet" type="text/css" href="../css/webuploader.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+<style>
+    .del_pic{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        display: block;
+        background: rgba(183, 218, 237, 0.4);
+        width: 250.5px;
+        color: white;
+    }
+</style>
+<body>
+<from action="" method="post" id="formtest">
+    <div id="wrapper">
+        <div id="container">
+            <!--头部，相册选择和格式选择-->
+
+            <div id="uploader">
+                <div class="queueList">
+                    <div id="dndArea" class="placeholder">
+                        <div id="filePicker"></div>
+                        <p>或将照片拖到这里，单次最多可选300张</p>
+                    </div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                    <div class="progress">
+                        <span class="text">0%</span>
+                        <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit"  onclick="hello()" value="存储图片">
+</from>
+    <script type="text/javascript" src="./jquery.js"></script>
+    <script type="text/javascript" src="../dist/webuploader.js"></script>
+    <script type="text/javascript" src="./upload.js"></script>
+</body>
+</html>
+    <script type="text/javascript">
+        function hello() {
+            console.log($('#formtest').serialize());
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "text",//预期服务器返回的数据类型 如果是对象返回的是json 如果是字符串这里一定要定义text 之前我就是定义json 结果字符串的返回一直到额error中去
+                /*
+                 dataType:
+                 要求为String类型的参数，预期服务器返回的数据类型。如果不指定，JQuery将自动根据http包mime信息返回responseXML或responseText，并作为回调函数参数传递。可用的类型如下：
+                 xml：返回XML文档，可用JQuery处理。
+                 html：返回纯文本HTML信息；包含的script标签会在插入DOM时执行。
+                 script：返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求时（不在同一个域下），所有post请求都将转为get请求。
+                 json：返回JSON数据。
+                 jsonp：JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个“?”为正确的函数名，以执行回调函数。
+                 text：返回纯文本字符串。
+                 */
+                url: "http://hee.com:8888/server/dealImage.php",//url
+                data: $('#formtest').serialize(),//这个是form表单中的id   jQuery的serialize()方法通过序列化表单值
+                success: function (result) {
+                    alert("成功")
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("存储成功SUCCESS");
+                    };
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+
+        //删除图片
+        function del_pic(){
+            $('.del_pic').click(function(){
+                var delUrl = $(this).attr('value');
+                var url = '/admin/goods/deleteImage';
+                var theOne = $(this);
+                $.ajax({
+                    url:url,
+                    data:{delUrl:delUrl},
+                    type:'POST',
+                    success:function(){
+
+                        var file1 = $("#fileList").find('.del_pic');
+                        var str1 = '';
+                        file1.each(function(){
+                            str1 += $(this).attr('value')+',';
+                        });
+                        $("#picOne").val(str1);
+                    }
+                });
+                $(this).parent().parent().remove();
+            });
+        }
+
+</script>
+
