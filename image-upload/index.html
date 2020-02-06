@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <input type="submit"  onclick="hello()" value="存储图片">
+    <input type="submit"  onclick="save()" value="存储图片">
 </from>
     <script type="text/javascript" src="./jquery.js"></script>
     <script type="text/javascript" src="../dist/webuploader.js"></script>
@@ -53,7 +53,7 @@
 </body>
 </html>
     <script type="text/javascript">
-        function hello() {
+        function save() {
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
@@ -82,30 +82,5 @@
                 }
             });
         }
-
-        //删除图片
-        function del_pic(){
-            $('.del_pic').click(function(){
-                var delUrl = $(this).attr('value');
-                var url = '/admin/goods/deleteImage';
-                var theOne = $(this);
-                $.ajax({
-                    url:url,
-                    data:{delUrl:delUrl},
-                    type:'POST',
-                    success:function(){
-
-                        var file1 = $("#fileList").find('.del_pic');
-                        var str1 = '';
-                        file1.each(function(){
-                            str1 += $(this).attr('value')+',';
-                        });
-                        $("#picOne").val(str1);
-                    }
-                });
-                $(this).parent().parent().remove();
-            });
-        }
-
 </script>
 
