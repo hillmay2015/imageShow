@@ -54,7 +54,6 @@
 </html>
     <script type="text/javascript">
         function hello() {
-            console.log($('#formtest').serialize());
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
@@ -70,7 +69,7 @@
                  text：返回纯文本字符串。
                  */
                 url: "http://hee.com:8888/server/dealImage.php",//url
-                data: $('#formtest').serialize(),//这个是form表单中的id   jQuery的serialize()方法通过序列化表单值
+                data:{"img":'http://hee.com:8888/server/upload/file_5e3bcc9b563c320200206index2.jpg'},//这个是form表单中的id   jQuery的serialize()方法通过序列化表单值
                 success: function (result) {
                     alert("成功")
                     console.log(result);//打印服务端返回的数据(调试用)

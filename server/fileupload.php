@@ -26,7 +26,6 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-echo '22222';
 
 // Support CORS
 // header("Access-Control-Allow-Origin: *");
@@ -75,9 +74,9 @@ if (!file_exists($uploadDir)) {
 
 // Get a file name
 if (isset($_REQUEST["name"])) {
-    $fileName = $_REQUEST["name"];
+    $fileName = uniqid("file_").Date("Ymd").$_REQUEST["name"];
 } elseif (!empty($_FILES)) {
-    $fileName = $_FILES["file"]["name"];
+    $fileName = uniqid("file_").Date("Ymd").$_FILES["file"]["name"];
 } else {
     $fileName = uniqid("file_");
 }
@@ -173,6 +172,10 @@ if ( $done ) {
     }
     @fclose($out);
 }
+
+$data=['state'=>'true','filePath'=>$uploadPath];
+//return json_encode($data);
+die(json_encode($data));
 
 // Return Success JSON-RPC response
 die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');

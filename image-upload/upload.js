@@ -213,10 +213,11 @@
 
         // 当有文件添加进来时执行，负责view的创建
         function addFile( file ) {
+            console.log(file);
             var $li = $( '<li id="' + file.id + '">' +
                     '<p class="title">' + file.name + '</p>' +
                     '<p class="imgWrap"></p>'+
-                    '<input type="hidden" value="'+ file.name + '" name="img">'+
+                    '<input type="hidden" value="" name="img[]" class="imgName-up-item">'+
                     '<p class="progress"><span></span></p>' +
                     '</li>' ),
 
@@ -562,6 +563,17 @@
                 uploader.stop();
             }
         });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。 2020.2.6 xym
+        uploader.on('uploadSuccess', function(file, response) {
+            console.log('sssssssssss');
+            console.log(response);
+            var $li = $('#' + file.id);
+            console.log(response.filePath);
+            $li.find('.imgName-up-item').val(response.filePath);
+        });
+
+
 
         $info.on( 'click', '.retry', function() {
             uploader.retry();
