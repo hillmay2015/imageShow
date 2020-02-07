@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 <body>
-<from action="http://hee.com:8888/server/dealImage.php" method="post" id="formtest">
+<form action="http://hee.com:8888/server/dealImage.php" method="post" id="formtest">
     <div id="wrapper">
         <div id="container">
             <!--头部，相册选择和格式选择-->
@@ -31,44 +31,11 @@
             </div>
         </div>
     </div>
-    <input type="submit"  onclick="save()" value="存储图片">
-</from>
+    <input type="submit" value="存储图片">
+</form>
     <script type="text/javascript" src="./jquery.js"></script>
     <script type="text/javascript" src="../dist/webuploader.js"></script>
     <script type="text/javascript" src="./upload.js"></script>
 </body>
 </html>
-    <script type="text/javascript">
-        function save() {
-            alert('点击');
-            $('#testfoem').submit();
-//            $.ajax({
-//                //几个参数需要注意一下
-//                type: "POST",//方法类型
-//                dataType: "text",//预期服务器返回的数据类型 如果是对象返回的是json 如果是字符串这里一定要定义text 之前我就是定义json 结果字符串的返回一直到额error中去
-//                /*
-//                 dataType:
-//                 要求为String类型的参数，预期服务器返回的数据类型。如果不指定，JQuery将自动根据http包mime信息返回responseXML或responseText，并作为回调函数参数传递。可用的类型如下：
-//                 xml：返回XML文档，可用JQuery处理。
-//                 html：返回纯文本HTML信息；包含的script标签会在插入DOM时执行。
-//                 script：返回纯文本JavaScript代码。不会自动缓存结果。除非设置了cache参数。注意在远程请求时（不在同一个域下），所有post请求都将转为get请求。
-//                 json：返回JSON数据。
-//                 jsonp：JSONP格式。使用SONP形式调用函数时，例如myurl?callback=?，JQuery将自动替换后一个“?”为正确的函数名，以执行回调函数。
-//                 text：返回纯文本字符串。
-//                 */
-//                url: "http://hee.com:8888/server/dealImage.php",//url
-//                data:{"img":'http://hee.com:8888/server/upload/file_5e3bcc9b563c320200206index2.jpg'},//这个是form表单中的id   jQuery的serialize()方法通过序列化表单值
-//                success: function (result) {
-//                    alert("成功")
-//                    console.log(result);//打印服务端返回的数据(调试用)
-//                    if (result.resultCode == 200) {
-//                        alert("存储成功SUCCESS");
-//                    };
-//                },
-//                error : function() {
-//                    alert("异常！");
-//                }
-//            });
-        }
-</script>
 
