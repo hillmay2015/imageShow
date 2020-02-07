@@ -566,7 +566,6 @@
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。 2020.2.6 xym
         uploader.on('uploadSuccess', function(file, response) {
-            console.log('sssssssssss');
             console.log(response);
             var $li = $('#' + file.id);
             console.log(response.filePath);

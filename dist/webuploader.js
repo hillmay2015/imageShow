@@ -1873,11 +1873,11 @@
              * }
              * ```
              */
-            accept: null/*{
+            accept: {//2020.2.7 设置只能接受 图片类型的文件
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
                 mimeTypes: 'image/*'
-            }*/
+            }
         });
     
         return Uploader.register({
