@@ -15,18 +15,32 @@ if (mysqli_connect_errno($con))
 
 $data=$_POST;
 
-foreach ($data['img'] as $k=>$v){
-    $arr[$k]['goods_id']=1;//管理的属性id  默认1
-    $arr[$k]['img']=$v;
-    $query="INSERT INTO picture (good_id,img) VALUES ('1','$v')";
-    echo $query."<br>";
-    $result=mysqli_query($con,$query);
-    // 输出自动生成的 ID
-    echo "插入成功,新 id 为: " . mysqli_insert_id($con);
+echo '<pre>';
+print_r($data);
+
+if(!isset($data['img'])){
+    echo '<script>alert("请先上传图片")</script>';
+    echo '<script>window.location.href="http://hee.com:8888/image-upload/index.html"</script>';
+}else{
+    foreach ($data['img'] as $k=>$v){
+        $arr[$k]['goods_id']=1;//管理的属性id  默认1
+        $arr[$k]['img']=$v;
+        if(empty($v)){
+            echo '<script>window.location.href="http://hee.com:8888/image-upload/index.html"</script>';
+        }else{
+            $query="INSERT INTO picture (good_id,img) VALUES ('1','$v')";
+            echo $query."<br>";
+            $result=mysqli_query($con,$query);
+            // 输出自动生成的 ID
+            echo "插入成功,新 id 为: " . mysqli_insert_id($con);
+        }
+
+    }
+
 }
 
-
 mysqli_close($con);
+
 
 ?>
 
