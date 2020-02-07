@@ -5,6 +5,12 @@
     <title>图片上传</title>
     <link rel="stylesheet" type="text/css" href="../css/webuploader.css" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <style>
+        input, button{font-family:"Arial", "Tahoma", "微软雅黑", "雅黑";border:0;
+            vertical-align:middle;margin:8px;line-height:18px;font-size:18px}
+        .btn{width:140px;height:36px;line-height:18px;font-size:18px;
+            background:url("button.jpg") no-repeat left top;color:#FFF;padding-bottom:4px;}
+    </style>
 </head>
 <body>
 <form action="http://hee.com:8888/server/dealImage.php" method="post" id="formtest">
@@ -31,7 +37,11 @@
             </div>
         </div>
     </div>
-    <input type="submit" value="存储图片">
+    <!--<input type="submit" value="存储图片">-->
+    <div style="text-align: center">
+        <input type="submit" class="btn" value="存储图片" onmouseover="this.style.backgroundPosition='left -41px'"
+               onmouseout="this.style.backgroundPosition='left top'" />
+    </div>
 </form>
     <script type="text/javascript" src="./jquery.js"></script>
     <script type="text/javascript" src="../dist/webuploader.js"></script>
