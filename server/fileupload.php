@@ -181,7 +181,6 @@ if ( $done ) {
 }
 
 $data=['state'=>'true','filePath'=>HTTP_SITE_NOPATH_HOST."/server/".$uploadPath];
-//return json_encode($data);
 die(json_encode($data));
 
 // Return Success JSON-RPC response
