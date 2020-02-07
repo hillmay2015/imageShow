@@ -80,10 +80,12 @@ if (!file_exists($uploadDir)) {
 // Get a file name
 if (isset($_REQUEST["name"])) {
     $suffix=explode('.',$_REQUEST["name"]);
-    $fileName = uniqid("file_").Date("Ymd").mt_rand(10000,99999).".".$suffix[1];
+    echo date('YmdHis');
+    $fileName = date('YmdHis')."_".uniqid("").mt_rand(10000,99999).".".$suffix[1];
 } elseif (!empty($_FILES)) {
     $suffix=explode('.',$_FILES["file"]["name"]);
-    $fileName = uniqid("file_").Date("Ymd").mt_rand(10000,99999).".".$suffix[1];
+    echo date('YmdHis');
+    $fileName = date('YmdHis')."_".uniqid("").mt_rand(10000,99999).".".$suffix[1];
 } else {
     $fileName = uniqid("file_");
 }
