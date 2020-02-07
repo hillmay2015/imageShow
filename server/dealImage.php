@@ -5,7 +5,7 @@
  * Time: 下午2:11
  */
 
-// 假定数据库用户名：root，密码：root，数据库：zoo
+// 假定数据库用户名：root，密码：root，数据库：zoo 建议使用myqli方法  mysql_query的方法已弃用
 $con=mysqli_connect("localhost:8889","root","root","zoo");
 if (mysqli_connect_errno($con))
 {
